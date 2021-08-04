@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="..\CSS\style.css">
+        <title>Acceuil JustStreamIt</title>
+    </head>
+
+    <div id="bloc_page">
+        <body>
+
+            <div id="topSection">
+                <header>
+                    <h1>JustStreamIt</h1>
+                    <nav>
+                        <ul id="menu">
+                            <li><a href="#">Accueil</a></li>
+                            <li><a href="#">Catégories</a></li>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+
+            <section>
+                <div id="best_movie">
+                    <img class="el_best_movie" id="img_best_movie" src="#" alt="best_movie" />
+                    <h2 class="el_best_movie" id="title_best_movie"></h2>
+                    <figure class="el_best_movie">
+                        <button id="btn_best_movie"><a href="#modal1" class="js-modal">Détails</a></button>
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title_modal">
+                <div class="modal-wrapper js-modal-stop">
+                    <button class="js-modal-close">Fermer la fenêtre</button>
+                    <h1 id="title_modal">Informations</h1>
+                    <img id="js-img-movie" src="#" alt="Movie Picture" />
+                    <ul id="js-liste-infos">
+                        <li>titre</li>
+                        <li>genre</li>
+                        <li>date de sortie</li>
+                        <li>rated</li>
+                        <li>score imdb</li>
+                        <li>réalisateur</li>
+                        <li>actteurs</li>
+                        <li>durée</li>
+                        <li>pays</li>
+                        <li>box office</li>
+                        <li>résumé</li>
+                    </ul>
+                </div>
+            </aside>
+
+
+
+        </body>
+    </div>
+    <script src="..\JS\app.js"></script>
+</html>
