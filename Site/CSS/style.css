@@ -94,3 +94,21 @@ h1{
     padding: 20px;
     background-color: #fff;
 }
+
+/**
+CAROUSEL
+*/
+
+.carousel{
+    position: relative;    
+}
+
+.carousel__container::after{
+    content: '';
+    clear: both;
+    display: table;
+}
+
+.carousel__item{
+    float: left;
+}
