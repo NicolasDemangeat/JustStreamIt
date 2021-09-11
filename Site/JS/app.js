@@ -48,11 +48,19 @@ class Carousel {
                 let a = document.createElement('a')
                 a.setAttribute('href', '#modal1')
                 a.setAttribute('class', 'js-modal')
-                a.setAttribute('name', dataMovie.url)                
+                a.setAttribute('name', dataMovie.url)
+                a.addEventListener('click', openModal);
+                a.addEventListener('click', function (){
+                    if (a.parentNode.nodeName === 'BUTTON'){
+                        loadModal(urlBestMovie)
+                    }else{
+                        loadModal(a.getAttribute('name'))
+                    }
+                });
                 let image = document.createElement('img')
                 image.setAttribute('src', dataMovie.image_url)
                 image.setAttribute('alt', dataMovie.title)
-                image.setAttribute('href', '#modal1')                
+                image.setAttribute('href', '#modal1')
                 a.appendChild(image)
                 item.appendChild(a)
                 carouselItem.appendChild(item)
@@ -61,8 +69,6 @@ class Carousel {
         })
     }
 }
-
-
 
 /**
  * Send a request using fetch api.
@@ -86,7 +92,6 @@ async function createHeader(url) {
     titleBestMovie.textContent = data2.title;
     return data2;
 };
-
 
 /**
  * Send a request using fetch api.
@@ -114,7 +119,6 @@ function getDataByID(url) {
         return mapData;
     });
 };
-
 
 /// Modal section
 let modal = null;
@@ -166,46 +170,28 @@ const loadModal = function (url, num=0){
 };
 ////End modal section
 
-document.addEventListener('DOMContentLoaded', function () {
-
-    new Carousel(document.querySelector('#carousel1'), {
-        slideToScroll: 1,
-        slideVisible: 4
-    }, urlBestMovies)
-
-    new Carousel(document.querySelector('#carousel2'), {
-        slideToScroll: 1,
-        slideVisible: 4
-    }, urlAdventureMovies)
-
-    new Carousel(document.querySelector('#carousel3'), {
-        slideToScroll: 1,
-        slideVisible: 4
-    }, urlComedyMovies)
-
-    new Carousel(document.querySelector('#carousel4'), {
-        slideToScroll: 1,
-        slideVisible: 4
-    }, urlSifiMovies)
-
-    let divage = document.createElement('div')
-    divage.setAttribute('id', 'okbb')
-    document.body.appendChild(divage)
-})
-
-
-while (!!document.getElementById('okbb') === true){
-    document.querySelectorAll('.js-modal').forEach(a => {
-        console.log(a)
-        a.addEventListener('click', openModal);
-        a.addEventListener('click', function (){
-            if (a.parentNode.nodeName === 'BUTTON'){
-                loadModal(urlBestMovie)
-            }else{
-                loadModal(a.getAttribute('name'))
-            }
-        });
-    });
+function createCarousel() {
+    document.addEventListener('DOMContentLoaded', function () {
+        new Carousel(document.querySelector('#carousel1'), {
+            slideToScroll: 1,
+            slideVisible: 4
+        }, urlBestMovies)
+    
+        new Carousel(document.querySelector('#carousel2'), {
+            slideToScroll: 1,
+            slideVisible: 4
+        }, urlAdventureMovies)
+    
+        new Carousel(document.querySelector('#carousel3'), {
+            slideToScroll: 1,
+            slideVisible: 4
+        }, urlComedyMovies)
+    
+        new Carousel(document.querySelector('#carousel4'), {
+            slideToScroll: 1,
+            slideVisible: 4
+        }, urlSifiMovies)
+    })
 }
-
+createCarousel()
 createHeader(urlBestMovies)
