@@ -87,6 +87,13 @@ async function createHeader(url) {
     let srcImageBestMovie = document.getElementById('img_best_movie');
     let figcaption = document.getElementsByTagName('figcaption');
     let titleBestMovie = document.getElementById('title_best_movie');
+    let link = document.getElementById("btn-link");
+    link.addEventListener('click', openModal);
+    link.addEventListener('click', function (){
+        if (link.parentNode.nodeName === 'BUTTON'){
+            loadModal(urlBestMovie)
+        }
+    });
     figcaption[0].textContent = data2.long_description;
     srcImageBestMovie.setAttribute('src', urlImgBestMovie);
     titleBestMovie.textContent = data2.title;
@@ -103,6 +110,7 @@ async function createHeader(url) {
 function getDataByID(url) {
     return fetch(url).then(response => response.json()).then(data => {
         let mapData = new Map();
+        
         mapData.set('imageUrl', data.image_url);
         mapData.set('title', data.title);
         mapData.set('genresArr', data.genres);
