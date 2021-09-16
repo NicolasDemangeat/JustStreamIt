@@ -2,7 +2,6 @@ const urlBestMovies = `http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,
 const urlAdventureMovies = `http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes&page_size=7&genre=adventure`;
 const urlSifiMovies = `http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes&page_size=7&genre=Sci-Fi`;
 const urlComedyMovies = `http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes&page_size=7&genre=comedy`;
-const urlBestMovie = `http://localhost:8000/api/v1/titles/9008642`
 
 class Carousel {
     /**
@@ -39,6 +38,16 @@ class Carousel {
         return div
     }
 
+
+    /**
+     * Fetch the url, then for every movies in the response
+     * we create the carousel item.
+     * First, create a div 'carousel__item', then, a div 'item',
+     * and an link 'a'.
+     * Set all the atributes for every HTML elements.
+     * Finaly append elements in the container.
+     * @param {String} url 
+     */
     createCarouselItems(url) {
         fetch(url).then(reponse => reponse.json()).then(data => {
             for (let dataMovie of data.results){
@@ -48,15 +57,11 @@ class Carousel {
                 let a = document.createElement('a')
                 a.setAttribute('href', '#modal1')
                 a.setAttribute('class', 'js-modal')
-                a.setAttribute('name', dataMovie.url)
                 a.addEventListener('click', openModal);
-                a.addEventListener('click', function (){
-                    if (a.parentNode.nodeName === 'BUTTON'){
-                        loadModal(urlBestMovie)
-                    }else{
-                        loadModal(a.getAttribute('name'))
-                    }
-                });
+                a.addEventListener('click', function(e){
+                    e.preventDefault();
+                    loadModal(dataMovie.url)
+                })
                 let image = document.createElement('img')
                 image.setAttribute('src', dataMovie.image_url)
                 image.setAttribute('alt', dataMovie.title)
@@ -81,7 +86,8 @@ async function createHeader(url) {
     let response = await fetch(url);
     let data = await response.json();
     let bestMovieId = data.results[0]["id"];
-    let response2 = await fetch(`http://localhost:8000/api/v1/titles/${bestMovieId}`);
+    let urlBestMovie = `http://localhost:8000/api/v1/titles/${bestMovieId}`
+    let response2 = await fetch(urlBestMovie);
     let data2 = await response2.json();
     let urlImgBestMovie = data2.image_url;
     let srcImageBestMovie = document.getElementById('img_best_movie');
@@ -89,15 +95,13 @@ async function createHeader(url) {
     let titleBestMovie = document.getElementById('title_best_movie');
     let link = document.getElementById("btn-link");
     link.addEventListener('click', openModal);
-    link.addEventListener('click', function (){
-        if (link.parentNode.nodeName === 'BUTTON'){
-            loadModal(urlBestMovie)
-        }
+    link.addEventListener('click', function (e){
+        e.preventDefault();
+        loadModal(urlBestMovie)
     });
     figcaption[0].textContent = data2.long_description;
     srcImageBestMovie.setAttribute('src', urlImgBestMovie);
     titleBestMovie.textContent = data2.title;
-    return data2;
 };
 
 /**
@@ -130,6 +134,11 @@ function getDataByID(url) {
 
 /// Modal section
 let modal = null;
+
+/**
+ * Display the modal and set an event listener to close modal.
+ * @param {Event} e 
+ */
 const openModal = function (e) {
     e.preventDefault();
     const target = document.querySelector(e.target.getAttribute('href'));
@@ -142,6 +151,13 @@ const openModal = function (e) {
     modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
 };
 
+
+/**
+ * Set the modal style to none.
+ * Remove the event listener to close modal.
+ * @param {Event} e 
+ * @returns 
+ */
 const closeModal = function (e) {
     if (modal === null) return;
     e.preventDefault();
@@ -154,14 +170,24 @@ const closeModal = function (e) {
     modal = null;
 };
 
+/**
+ * Just stop the click on the modal
+ * @param {Event} e 
+ */
 const stopPropagation = function (e) {
     e.stopPropagation();
 };
 
-const loadModal = function (url, num=0){
+/**
+ * The param url must be with ID.
+ * We use the function getDataByID to have a Map object in return.
+ * Then, we use this Map object to set the <ul> element of the modal with movie's data.
+ * @param {String} url 
+ */
+const loadModal = function (url){
     let listUl = document.getElementById('js-liste-infos');
     let imageBestMovie = document.getElementById('js-img-movie');
-    getDataByID(url).then(function (data){
+    getDataByID(url).then(data => {
         imageBestMovie.src = data.get('imageUrl');
         listUl.innerHTML = `<li><em><strong>Titre : </strong></em>${data.get('title')}</li>
                             <li><em><strong>Genres : </strong></em>${data.get('genresArr')}</li>
@@ -178,28 +204,23 @@ const loadModal = function (url, num=0){
 };
 ////End modal section
 
-function createCarousel() {
-    document.addEventListener('DOMContentLoaded', function () {
-        new Carousel(document.querySelector('#carousel1'), {
-            slideToScroll: 1,
-            slideVisible: 4
-        }, urlBestMovies)
-    
-        new Carousel(document.querySelector('#carousel2'), {
-            slideToScroll: 1,
-            slideVisible: 4
-        }, urlAdventureMovies)
-    
-        new Carousel(document.querySelector('#carousel3'), {
-            slideToScroll: 1,
-            slideVisible: 4
-        }, urlComedyMovies)
-    
-        new Carousel(document.querySelector('#carousel4'), {
-            slideToScroll: 1,
-            slideVisible: 4
-        }, urlSifiMovies)
-    })
+const newCarousel = async function (carouselName, genderUrl) {
+    new Carousel(document.querySelector(carouselName), {
+        slideToScroll: 1,
+        slideVisible: 4
+    }, genderUrl)
 }
-createCarousel()
-createHeader(urlBestMovies)
+
+async function createCarousel() {
+    await newCarousel('#carousel1', urlBestMovies);
+    await newCarousel('#carousel2', urlAdventureMovies);
+    await newCarousel('#carousel3', urlComedyMovies);
+    await newCarousel('#carousel4', urlSifiMovies);
+}
+
+async function main() {
+    await createCarousel();
+    await createHeader(urlBestMovies);
+  }
+  
+window.addEventListener('DOMContentLoaded', main);
