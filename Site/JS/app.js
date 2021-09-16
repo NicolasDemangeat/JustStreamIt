@@ -18,6 +18,7 @@ class Carousel {
             slideToScroll : 1,
             slideVisible: 1
         }, options);
+        this.currentItem = 0
         this.ratio = 7/4
         this.root = this.createDivWithClass('carousel')
         this.container = this.createDivWithClass('carousel__container')
@@ -25,6 +26,40 @@ class Carousel {
         this.root.appendChild(this.container)
         this.element.appendChild(this.root)
         this.createCarouselItems(this.url)
+        this.createNavigation()
+    }
+
+    createNavigation() {
+        let nextButton = this.createDivWithClass('carousel__next')
+        let prevButton = this.createDivWithClass('carousel__prev')
+        nextButton.addEventListener('click', this.next.bind(this))
+        prevButton.addEventListener('click', this.prev.bind(this))
+        this.root.appendChild(nextButton)
+        this.root.appendChild(prevButton)
+
+    }
+
+    next() {
+        this.gotoItem(this.currentItem + this.options.slideToScroll)
+    }
+
+    prev() {
+        this.gotoItem(this.currentItem - this.options.slideToScroll)
+    }
+
+    /**
+     * Switch the carousel to the index item
+     * @param {Integer} index 
+     */
+    gotoItem (index) {
+        if (index < 0) {
+            index = 7 - this.options.slideVisible
+        } else if (index >= 7-this.options.slideVisible+1) {
+            index = 0
+        }
+        let translateX = index * -100 / 7
+        this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)'
+        this.currentItem = index
     }
 
     /**
@@ -82,7 +117,7 @@ class Carousel {
  * @param {String} url 
  * @returns {Promise}
  */
-async function createHeader(url) {
+const createHeader = async function (url) {
     let response = await fetch(url);
     let data = await response.json();
     let bestMovieId = data.results[0]["id"];
@@ -111,7 +146,7 @@ async function createHeader(url) {
  * @param {String} url 
  * @returns {Map}
  */
-function getDataByID(url) {
+const getDataByID = function (url) {
     return fetch(url).then(response => response.json()).then(data => {
         let mapData = new Map();
         
@@ -211,14 +246,14 @@ const newCarousel = async function (carouselName, genderUrl) {
     }, genderUrl)
 }
 
-async function createCarousel() {
+const createCarousel = async function () {
     await newCarousel('#carousel1', urlBestMovies);
     await newCarousel('#carousel2', urlAdventureMovies);
     await newCarousel('#carousel3', urlComedyMovies);
     await newCarousel('#carousel4', urlSifiMovies);
 }
 
-async function main() {
+const main = async function () {
     await createCarousel();
     await createHeader(urlBestMovies);
   }
