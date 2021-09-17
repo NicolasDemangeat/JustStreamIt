@@ -11,12 +11,12 @@ html{
 body{
     margin: 0;
     padding: 0;
-    background: url("Site/ressource/cinema.jpg") no-repeat fixed;
+    background: url("../ressource/cinema.jpg") no-repeat fixed;
 	background-size: cover;
 }
 
 #bloc_page{
-	width: 50%;
+	width: 60%;
 	margin: auto;
 	box-shadow: 5px 5px 15px black;
 }
@@ -99,17 +99,20 @@ h1{
 CAROUSEL
 */
 
-.carousel{
+.carousel {
     position: relative;
     overflow: hidden;
 }
 
 .carousel__container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     transition: transform 0.3s;
     transform: translate3d(0, 0, 0);
 }
 
-.carousel__container::after{
+.carousel__container::after {
     content: '';
     clear: both;
     display: table;
@@ -123,7 +126,7 @@ CAROUSEL
     position: absolute;
     width: 40px;
     height: 40px;
-    background: #fff url("Site/ressource/next.svg") center center no-repeat;
+    background: #fff url("../ressource/next.svg") center center no-repeat;
     background-size: 20px 20px;
     border-radius: 50%;
     top: 50%;
@@ -139,7 +142,7 @@ CAROUSEL
 }
 
 .carousel__prev {
-    background-image: url("Site/ressource/back.svg");
+    background-image: url("../ressource/back.svg");
     right: auto;
     left: 2px;
 }
