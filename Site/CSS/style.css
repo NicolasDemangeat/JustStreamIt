@@ -11,7 +11,7 @@ html{
 body{
     margin: 0;
     padding: 0;
-    background: url("site/ressource/cinema.jpg") no-repeat fixed;
+    background: url("Site/ressource/cinema.jpg") no-repeat fixed;
 	background-size: cover;
 }
 
@@ -123,7 +123,7 @@ CAROUSEL
     position: absolute;
     width: 40px;
     height: 40px;
-    background: #fff url("site/ressource/next.svg") center center no-repeat;
+    background: #fff url("Site/ressource/next.svg") center center no-repeat;
     background-size: 20px 20px;
     border-radius: 50%;
     top: 50%;
@@ -139,7 +139,7 @@ CAROUSEL
 }
 
 .carousel__prev {
-    background-image: url("site/ressource/back.svg");
+    background-image: url("Site/ressource/back.svg");
     right: auto;
     left: 2px;
 }
