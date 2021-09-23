@@ -29,6 +29,10 @@ class Carousel {
         this.createNavigation()
     }
 
+
+    /**
+     * Create the next and prev button.
+     */
     createNavigation() {
         let nextButton = this.createDivWithClass('carousel__next')
         let prevButton = this.createDivWithClass('carousel__prev')
@@ -36,7 +40,6 @@ class Carousel {
         prevButton.addEventListener('click', this.prev.bind(this))
         this.root.appendChild(nextButton)
         this.root.appendChild(prevButton)
-
     }
 
     next() {
@@ -54,7 +57,7 @@ class Carousel {
     gotoItem (index) {
         if (index < 0) {
             index = 7 - this.options.slideVisible
-        } else if (index >= 7-this.options.slideVisible+1) {
+        } else if (index >= 7 - this.options.slideVisible + 1) {
             index = 0
         }
         let translateX = index * -100 / 7
@@ -160,7 +163,11 @@ const getDataByID = function (url) {
         mapData.set('actorsArr', data.actors);
         mapData.set('duration', data.duration);
         mapData.set('countriesArr', data.countries);
-        mapData.set('boxOffice', data.worldwide_gross_income);
+        if (data.worldwide_gross_income === null){
+            mapData.set('boxOffice', 'No data for this movie.');
+        }else{
+            mapData.set('boxOffice', data.worldwide_gross_income);
+        }        
         mapData.set('description', data.long_description);
 
         return mapData;

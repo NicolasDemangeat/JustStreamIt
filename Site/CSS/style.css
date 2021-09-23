@@ -18,12 +18,21 @@ body{
 #bloc_page{
 	width: 60%;
 	margin: auto;
-	box-shadow: 5px 5px 15px black;
 }
+
+#title_modal{
+    color: black;
+    background-color: white;
+}
+
 
 #topSection{
     padding: 2rem;
     margin: 1rem 0 1rem 0;
+    background-color: #62757F;
+}
+
+section, h1{
     background-color: #62757F;
 }
 
@@ -62,7 +71,7 @@ h1{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: violet;
+    background-color: #62757F;
     padding: 0.1rem;
 }
 
@@ -119,6 +128,9 @@ CAROUSEL
 }
 
 .carousel__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     float: left;
 }
 
