@@ -23,6 +23,7 @@ Ainsi que :
 
 ## 3. Fonctionnement
 Il faut dans un premier temps exécuter OCMovies-API comme indiqué dans les prérequis.
+
 Ensuite, après avoir téléchargé JustStreamIt-main.zip depuis GitHub, il suffit d’ouvrir index.html avec le navigateur de votre choix.
 
 ## 4. Futures améliorations
