@@ -4,9 +4,9 @@ Application web affichant les meilleurs films par genre.
 ## *Table des matières*
 1. [Prérequis](#1-prérequis)
 2. [Informations générales](#2-informations-générales)   
-3. [Fonctionnement](#4-fonctionnement)
-4. [Futures améliorations](#6-futures-améliorations)
-5. [Auteur](#7-auteur)
+3. [Fonctionnement](#3-fonctionnement)
+4. [Futures améliorations](#4-futures-améliorations)
+5. [Auteur](#5-auteur)
 
 ## 1. Prérequis
 Il est nécessaire d’installer et d'exécuter OCMovies-API.
