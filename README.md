@@ -10,6 +10,7 @@ Application web affichant les meilleurs films par genre.
 
 ## 1. Prérequis
 Il est nécessaire d’installer et d'exécuter OCMovies-API.
+
 Suivez les instructions donné à cette adresse : 
 https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR
 
