@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <head>
         <meta charset="UTF-8">
@@ -7,60 +7,60 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="Site/CSS/style.css">
         
-        <title>Acceuil JustStreamIt</title>
+        <title lang="fr">Acceuil JustStreamIt</title>
     </head>
-
-    <div id="bloc_page">
-        <body>
+    <body>
+        <div id="bloc_page">
             <div id="topSection">
                 <header>
-                    <h1>JustStreamIt</h1>
+                    <h1 lang="fr">JustStreamIt</h1>
                     <nav>
                         <ul id="menu">
-                            <li><a href="#">Accueil</a></li>
-                            <li><a href="#">Catégories</a></li>
+                            <li><a href="#" lang="fr">Accueil</a></li>
+                            <li><a href="#" lang="fr">Catégories</a></li>
                         </ul>
                     </nav>
                 </header>
             </div>
 
             <section>
-                <h1>Best Movie Ever</h1>
+                <h2 lang="fr">Meilleur film toutes catégories confondues.</h2>
                 <div id="best_movie">
                     <img class="el_best_movie" id="img_best_movie" src="#" alt="best_movie" />
-                    <h2 class="el_best_movie" id="title_best_movie"></h2>
+                    <h2 class="el_best_movie" id="title_best_movie" lang="fr">Titre</h2>
                     <figure class="el_best_movie">
-                        <button id="btn_best_movie"><a href="#modal1" class="js-modal" id="btn-link">Détails</a></button>
+                        <a href="#modal1" class="js-modal" id="btn-link">Détails</a>
                         <figcaption></figcaption>
                     </figure>
                 </div>
             </section>
 
-            <section id="panorama">
+            <div id="panorama">
                 <div id="carousel1">
-                    <h1>Films les mieux notés</h1>
+                    <h1 lang="fr">Films les mieux notés</h1>
                 </div>
                 <div id="carousel2">
-                    <h1>Meilleur films d'Aventure</h1>
+                    <h1 lang="fr">Meilleur films d'Aventure</h1>
                 </div>
                 <div id="carousel3">
-                    <h1>Meilleur films de Comédie</h1>
+                    <h1 lang="fr">Meilleur films de Comédie</h1>
                 </div>
                 <div id="carousel4">
-                    <h1>Meilleur films de Science-Fiction</h1>
+                    <h1 lang="fr">Meilleur films de Science-Fiction</h1>
                 </div>
-            </section>
+            </div>
 
-            <aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title_modal">
+            <aside id="modal1" class="modal" aria-hidden="true" aria-labelledby="title_modal">
                 <div class="modal-wrapper js-modal-stop">
-                    <button class="js-modal-close">Fermer la fenêtre</button>
-                    <h1 id="title_modal">Informations</h1>
+                    <button class="js-modal-close" lang="fr">Fermer la fenêtre</button>
+                    <h2 id="title_modal" lang="fr">Informations</h2>
                     <img id="js-img-movie" src="#" alt="Movie Picture" />
                     <ul id="js-liste-infos"></ul>
                 </div>
             </aside>
 
-        </body>
-    </div>
-    <script src="Site/JS/app.js"></script>
+
+        </div>
+        <script src="Site/JS/app.js"></script>
+    </body>
 </html>
