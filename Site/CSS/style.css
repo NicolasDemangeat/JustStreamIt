@@ -34,6 +34,11 @@ body{
     display: inline-block;
 }
 
+figcaption{
+    padding-top: 3%;
+    font-weight: bold;
+}
+
 #topSection{
     padding: 2rem;
     margin: 1rem 0 1rem 0;
@@ -87,6 +92,7 @@ section {
 
 button {
     cursor: pointer;
+    margin-bottom: 5%;
 }
 
 .modal{
@@ -106,6 +112,7 @@ button {
 }
 
 .modal-wrapper{
+    border-radius: 1%;
     overflow: auto;
     width: 600px;
     max-width: calc(100vw - 20px);
