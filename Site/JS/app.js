@@ -29,7 +29,6 @@ class Carousel {
         this.createNavigation()
     }
 
-
     /**
      * Create the next and prev button.
      */
@@ -75,7 +74,6 @@ class Carousel {
         div.setAttribute('class', className)
         return div
     }
-
 
     /**
      * Fetch the url, then for every movies in the response
@@ -192,7 +190,6 @@ const openModal = function (e) {
     modal.querySelector('.js-modal-close').addEventListener('click', closeModal);
     modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
 };
-
 
 /**
  * Set the modal style to none.
